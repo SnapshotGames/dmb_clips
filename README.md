@@ -8,4 +8,4 @@ The core is the DMBSequencer tool which supports animation playback with crossfa
 ----
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
 ----
-Video of the tool: https://youtu.be/tJ6N3t6qyBY
+Video of the tool: https://youtu.be/jr76VzZQUME
