@@ -1,3 +1,4 @@
+Create Clips directory in Resources if not created yet.
 Move the clip merge stuff to PP specific.
 Move the AimIK to PP specific.
 Move the Utl stuff into clip util.
