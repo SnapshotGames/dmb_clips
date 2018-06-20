@@ -1,6 +1,8 @@
 # Dumb Clips
 A dumb alternative to Unity3D's own 'smart' animation and timeline systems.
 ----
+Dumb animation playback with crossfades, path following, camera path and lookat targets as spline paths. The resulting clips are simple unity prefabs with no references in them, only strings and numbers.
+----
 ![screenshot](https://i.imgur.com/sHUU5de.png)
 ----
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
