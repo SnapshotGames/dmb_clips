@@ -1,0 +1,7 @@
+Move the clip merge stuff to PP specific.
+Move the AimIK to PP specific.
+Move the Utl stuff into clip util.
+Remove redundant partial Sequencers.
+. Extend Sequencer for PP using inheritance.
+Remove noise members from camera.
+Always show the move-entire-spline gizmo
