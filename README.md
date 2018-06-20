@@ -1,4 +1,4 @@
-# DMB Sequencing and Playback
+# Dumb Sequencing and Playback
 A dumb alternative to Unity3D's own 'smart' animation and timeline systems.
 ----
 The core is the DMBSequencer tool which supports animation playback with crossfades, path following, camera position and lookat lerp along splines. The resulting clips are simple unity prefabs with no references in them, only strings and numbers.
