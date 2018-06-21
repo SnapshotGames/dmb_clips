@@ -16,7 +16,6 @@ Some useful commands
 ----
 **load \<clip\>** - loads clip.  
 **save \[optional_clip_name\]** - saves clip.  
-
 **new** - creates a new empty clip.  
 **import \<clip\>** - appends another clip to current clip.  
 **replace_actor \<actor\> \[optional_actor\]** - if optional actor name is supplied replaces \<actor\> with [optional_actor], otherwise, replaces all actors with \<actor\>.  
