@@ -7,6 +7,10 @@ Installation
 ----
 Just copy/git clone dmb_clips inside your Assets folder.
 
+Running the Example
+----
+Click on the sequencer timeline in the Scene View. In the Command Line field type 'load \<partial clip name\>'. For example 'load big guy' will load the big_guy_github.clip.prefab for editing.
+
 ![screenshot](https://i.imgur.com/sHUU5de.png)
 ----
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
