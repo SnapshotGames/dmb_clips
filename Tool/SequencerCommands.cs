@@ -41,7 +41,7 @@ public partial class Sequencer : MonoBehaviour
 		_clip.ClearAllLists( clearDuration: true );
 		ClipData match = Import_f( argv );
 		if ( ! match ) {
-			Resources.LoadAll( "Clips/", typeof( ClipData ) );
+			Resources.LoadAll( "DMBClips/", typeof( ClipData ) );
 			match = Import_f( argv );
 		}
 		if ( match ) {
