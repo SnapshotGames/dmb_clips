@@ -38,12 +38,12 @@ Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera sp
 * Easy path following using steering while playing animations in other tracks.  
 * Easy camera 'rails' and cuts using splines and keys.    
 
-Work both in Play and Edit modes.  
-Edit samples and paths while playing the clip.  
-Minimal tool interface directly inside the Scene Window.  
-Clips are just a collection of samples, each sample class implementing specific action over time.  
+The Sequencer (a.k.a the tool) works both in Play and Edit modes.  
+Edit samples and paths while playing a Clip.  
+Minimal Sequencer interface, directly inside the Scene Window.  
+Clips are just a collection of Samples, each Sample class implementing specific action over time.  
 Use only human readable data structures, leading to readable prefabs.  
 No Custom Property Drawers and Editors.  
-Simple tool setup.  
-Simple playback embedding in games.  
-Extend the tool and playback by extending only the core (clip, playback), not the interface/inspector.
+Simple Sequencer setup.  
+Simple Playback embedding in games.  
+Extend the Sequencer and playback by extending only the core (implementing specific Samples and playback routines), not the interface/inspector.
