@@ -1,8 +1,6 @@
-# Dumb Sequencing and Playback
-----
-A dumb alternative to Unity3D's own 'smart' Animation, Timeline and Cinemachine systems.  
+# Dumb Sequencing and Playback  
 
-----
+A dumb alternative to Unity3D's own 'smart' Animation, Timeline and Cinemachine systems.  
 
 Objectives
 ----
