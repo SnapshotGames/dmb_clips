@@ -30,7 +30,7 @@ Some useful commands
 ----
 Video of the tool: https://youtu.be/jr76VzZQUME
 
-Dumb Clips try to achieve
+Dumb Clips Goals
 ----
 Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera splines and actor movement over paths.  
 * Multiple tracks for samples.  
