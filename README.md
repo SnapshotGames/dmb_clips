@@ -27,15 +27,16 @@ Some useful commands
 
 Objectives
 ----
-Easy creation of tiny cutscenes (clips) with animated actors, cameras and path following/steering.  
-* Easy animation sequencing for multiple actors. 
-* Easy animation crossfades.  
-* Easy follow paths while playing animations.  
-* Easy camera paths and cuts using splines and keys.  
+Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera splines and actor path following/steering.  
+* Multiple tracks for samples.  
+* Easy animation sampling and crossfades.  
+* Easy path following using steering while playing animations in other tracks.  
+* Easy camera 'rails' and cuts using splines and keys.    
 
 Work both in Play and Edit modes.  
 Edit samples and paths while playing the clip.  
 Minimal tool interface directly inside the Scene Window.  
+Clips are just a collection of samples, each sample class implementing specific action over time.  
 Use only human readable data structures, leading to readable prefabs.  
 No Custom Property Drawers and Editors.  
 Simple tool setup.  
