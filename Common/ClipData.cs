@@ -19,22 +19,25 @@ public class ClipData : MonoBehaviour
 
 	public static string GetPath( string prefabName )
 	{
-		return "Clips/" + prefabName + ".clip";
+		return "DMBClips/" + prefabName + ".clip";
 	}
 
-	public static GameObject Save( string prefabName, Clip clip, bool destroy = true )
+	public static GameObject Save( string resourcesDir, string prefabName, Clip clip, bool destroy = true )
 	{
 #if UNITY_EDITOR
 		GameObject go = new GameObject();
 		ClipData cd = go.AddComponent<ClipData>();
 		cd.Version = CurrentVersion;
 		cd.Clip = clip;
-		Object prefab = PrefabUtility.CreateEmptyPrefab( "Assets/Resources/" + GetPath( prefabName ) + ".prefab" );
-        PrefabUtility.ReplacePrefab(go, prefab, ReplacePrefabOptions.ConnectToPrefab);
-		if ( destroy ) {
-			GameObject.DestroyImmediate( go );
-		}
-		Debug.Log( "Saved Clip " + prefabName );
+        string fullPath = resourcesDir + "/" + GetPath( prefabName ) + ".prefab";
+		Object prefab = PrefabUtility.CreateEmptyPrefab( fullPath );
+        if (prefab) {
+            PrefabUtility.ReplacePrefab(go, prefab, ReplacePrefabOptions.ConnectToPrefab);
+            if ( destroy ) {
+                GameObject.DestroyImmediate( go );
+            }
+            Debug.Log( "Saved Clip " + fullPath );
+        }
 		return go;
 #else
 		return null;

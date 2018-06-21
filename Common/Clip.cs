@@ -564,7 +564,7 @@ public partial class Clip
 						List = val as IList,
 						PropName = f.Name,
 					};
-					Debug.Log( "Found sample list '" + f.Name + "'." );
+					//Debug.Log( "Found sample list '" + f.Name + "'." );
 				}
 			}
 		}

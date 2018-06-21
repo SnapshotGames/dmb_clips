@@ -45,8 +45,7 @@ public partial class Sequencer : MonoBehaviour
 	public int CaptureVideoSuperSize = 1;
 	public string CaptureVideoDirectory = "";
 
-	public RuntimeAnimatorController FallbackAnimator;
-	public Avatar FallbackAvatar;
+    public string ClipsParentDirectory = "Assets/dmb_clips/Example/Resources";
 
 	public void SetTargetInspector( SequencerInspector cei ) {
 		if ( _inspector != cei ) {
@@ -182,7 +181,7 @@ public partial class Sequencer : MonoBehaviour
 		_lastSaveTime = Time.realtimeSinceStartup;
 		UpdateAllAnimationInternals();
 		// can't destroy game objects in validate callbacks
-		ClipData.Save( clipName, _clip, destroy: false );
+		ClipData.Save( ClipsParentDirectory, clipName, _clip, destroy: false );
 	}
 
     void OnScene( SceneView sceneView ) 

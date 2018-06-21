@@ -58,7 +58,6 @@ MonoBehaviour:
     FollowPathSamples: []
     ParticleSamples: []
     MovementSamples: []
-    AimIKSamples: []
     Moments: []
     Duration: 6.66
   Display:
@@ -66,13 +65,6 @@ MonoBehaviour:
     PauseTexture: {fileID: 2800000, guid: 322a114c595fd4a4e8b516779141a557, type: 3}
     RampTexture: {fileID: 2800000, guid: ccd540ff2bd93b6468e1552f97d4a2a2, type: 3}
     NubTexture: {fileID: 2800000, guid: 1159a89f39589e1438246dbcd04d3dcb, type: 3}
-    CamPathColor: {r: 1, g: 1, b: 1, a: 1}
-    CamLookatColor: {r: 1, g: 0.75, b: 0, a: 1}
-    FollowPathColor: {r: 1, g: 0, b: 1, a: 1}
-    MecanimColor: {r: 0, g: 1, b: 0, a: 1}
-    ParticleColor: {r: 1, g: 0, b: 0, a: 1}
-    MoveColor: {r: 0, g: 1, b: 1, a: 1}
-    AimIKColor: {r: 0, g: 0, b: 1, a: 1}
     UnselectedSplineWidth: 2
     SelectedSplineWidth: 5
     SplineTexture: {fileID: 2800000, guid: 7ac0b9dd2ec2f9c4ba97c8c4636b2c79, type: 3}
