@@ -13,6 +13,17 @@ Running the Example
 2) Click on the sequencer timeline in the Scene View. 
 3) In the Command Line field type 'load \<partial clip name\>' and press Enter. For example 'load big guy' will load the big_guy_github.clip.prefab for editing.
 
+Some useful commands
+----
+new -- creates a new empty clip
+import \<clip\> -- appends another clip to current clip.
+load \<clip\> -- loads clip.
+save \[optional_clip_name\] -- saves clip.
+replace_actor \<actor\> [optional_actor] -- if optional actor name is supplied replaces \<actor\> with [optional_actor], otherwise, replaces all actors with \<actor\>.
+revert -- load last saved version of current clip.
+shift \<seconds\> -- shifts clip samples with \<seconds\> seconds.
+trim -- cut any empty time at the clip bounds.
+
 ![screenshot](https://i.imgur.com/sHUU5de.png)
 ----
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
