@@ -23,7 +23,7 @@ import \<clip\> - appends another clip to current clip.
 replace_actor \<actor\> [optional_actor] - if optional actor name is supplied replaces \<actor\> with [optional_actor], otherwise, replaces all actors with \<actor\>.  
 revert - load last saved version of current clip.  
 shift \<seconds\> - shifts clip samples with \<seconds\> seconds.  
-trim --cut any empty time at the clip bounds.  
+trim - cut any empty time at the clip bounds.  
 
 ![screenshot](https://i.imgur.com/sHUU5de.png)
 ----
