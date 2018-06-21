@@ -27,14 +27,16 @@ Some useful commands
 
 Objectives
 ----
+Easy creation of tiny cutscenes (clips) with animated actors, cameras and path following/steering.  
+* Easy animation sequencing for multiple actors. 
+* Easy animation crossfades.  
+* Easy follow paths while playing animations.  
+* Easy camera paths and cuts using splines and keys.  
+
 Work both in Play and Edit modes.  
 Edit samples and paths while playing the clip.  
-Easy animation sequencing for multiple actors. 
-Easy animation crossfades.  
-Easy follow paths while playing animations.  
-Easy camera paths and cuts.  
-Minimal interface directly in Scene window.  
-Generate human readable prefabs.  
+Minimal tool interface directly inside the Scene Window.  
+Use only human readable data structures, leading to readable prefabs.  
 No Custom Property Drawers and Editors.  
 Simple tool setup.  
 Simple playback embedding in games.  
