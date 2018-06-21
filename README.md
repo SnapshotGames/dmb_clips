@@ -2,24 +2,6 @@
 
 A dumb alternative to Unity3D's own 'smart' Animation, Timeline and Cinemachine systems.  
 
-Objectives
-----
-Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera splines and actor movement over paths.  
-* Multiple tracks for samples.  
-* Easy animation sampling and crossfades.  
-* Easy path following using steering while playing animations in other tracks.  
-* Easy camera 'rails' and cuts using splines and keys.    
-
-Work both in Play and Edit modes.  
-Edit samples and paths while playing the clip.  
-Minimal tool interface directly inside the Scene Window.  
-Clips are just a collection of samples, each sample class implementing specific action over time.  
-Use only human readable data structures, leading to readable prefabs.  
-No Custom Property Drawers and Editors.  
-Simple tool setup.  
-Simple playback embedding in games.  
-Extend the tool and playback by extending only the core (clip, playback), not the interface/inspector.
-
 Installation
 ----
 Just copy/git clone dmb_clips inside your Assets folder.
@@ -47,3 +29,21 @@ Some useful commands
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
 ----
 Video of the tool: https://youtu.be/jr76VzZQUME
+
+Objectives
+----
+Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera splines and actor movement over paths.  
+* Multiple tracks for samples.  
+* Easy animation sampling and crossfades.  
+* Easy path following using steering while playing animations in other tracks.  
+* Easy camera 'rails' and cuts using splines and keys.    
+
+Work both in Play and Edit modes.  
+Edit samples and paths while playing the clip.  
+Minimal tool interface directly inside the Scene Window.  
+Clips are just a collection of samples, each sample class implementing specific action over time.  
+Use only human readable data structures, leading to readable prefabs.  
+No Custom Property Drawers and Editors.  
+Simple tool setup.  
+Simple playback embedding in games.  
+Extend the tool and playback by extending only the core (clip, playback), not the interface/inspector.
