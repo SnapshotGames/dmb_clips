@@ -25,6 +25,21 @@ Some useful commands
 **shift \<seconds\>** - shifts clip samples with \<seconds\> seconds.  
 **trim** - cut any empty time at the clip bounds.  
 
+Objectives
+----
+Work both in Play and Edit modes.  
+Edit samples and paths while playing the clip.  
+Easy animation sequencing for multiple actors. 
+Easy animation crossfades.  
+Easy follow paths while playing animations.  
+Easy camera paths and cuts.  
+Minimal interface directly in Scene window.  
+Generate human readable prefabs.  
+No Custom Property Drawers and Editors.  
+Simple tool setup.  
+Simple playback embedding in games.  
+Extend the tool and playback by extending only the core (clip, playback), not the interface/inspector.
+
 ![screenshot](https://i.imgur.com/sHUU5de.png)
 ----
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
