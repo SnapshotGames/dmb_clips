@@ -11,7 +11,7 @@ Running the Example
 ----
 1) Open the scene Assets/dmb_clips/Example/Sequencer.unity. 
 2) Click on the sequencer timeline in the Scene View. 
-3) In the Command Line field type 'load \<partial clip name\>'. 
+3) In the Command Line field type 'load \<partial clip name\>' and press Enter. 
 4) For example 'load big guy' will load the big_guy_github.clip.prefab for editing.
 
 ![screenshot](https://i.imgur.com/sHUU5de.png)
