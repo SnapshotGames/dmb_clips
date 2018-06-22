@@ -4,13 +4,14 @@ A dumb alternative to Unity3D's own 'smart' Animation, Timeline and Cinemachine 
 
 Installation
 ----
-Copy or git clone dmb_clips inside your Assets folder.
+Copy or git clone dmb_clips inside your Assets folder. 
 
 Running the Example
 ----
-1) Open the scene Assets/dmb_clips/Example/Sequencer.unity. 
-2) Click on the sequencer timeline in the Scene View. 
-3) In the Command Line field type 'load \<partial clip name\>' and press Enter. For example 'load big guy' will load the big_guy_github.clip.prefab for editing.
+1) Make sure the 'Clips Parent Directory' field in the inspector points to the proper Resources folder.
+2) Open the scene Assets/dmb_clips/Example/Sequencer.unity. 
+3) Click on the sequencer timeline in the Scene View. 
+4) In the Command Line field type 'load \<partial clip name\>' and press Enter. For example 'load big guy' will load the big_guy_github.clip.prefab for editing.
 
 Some useful commands
 ----
@@ -23,7 +24,7 @@ Some useful commands
 **shift \<seconds\>** - shifts clip samples with \<seconds\> seconds.  
 **trim** - cut any empty time at the clip bounds.  
 
-![screenshot](https://i.imgur.com/sHUU5de.png)
+![screenshot](https://i.imgur.com/kPRGsC9.png)
 ----
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
 ----
