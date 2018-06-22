@@ -4,7 +4,7 @@ A dumb alternative to Unity3D's own 'smart' Animation, Timeline and Cinemachine 
 
 Installation
 ----
-Just copy/git clone dmb_clips inside your Assets folder.
+Copy or git clone dmb_clips inside your Assets folder.
 
 Running the Example
 ----
