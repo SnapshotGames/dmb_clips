@@ -32,9 +32,9 @@ Video of the tool: https://youtu.be/jr76VzZQUME
 
 Dumb Clips Goals
 ----
+Easy animation preview (with crossfades).
 Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera splines and actor movement over paths.  
 * Multiple tracks for samples.  
-* Easy animation sampling and crossfades.  
 * Easy path following using steering while playing animations in other tracks.  
 * Easy camera 'rails' and cuts using splines and keys.    
 
