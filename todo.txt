@@ -13,6 +13,7 @@ Show optional tips when hovering the sequencer interface.
 BUG: Sometimes drag and drop of clips doesn't work.
 Right click on keys.
 Rename <whatever>Edit to Edit<whatever>
+Make an interface to all looped samples, and stop refer MecanimSample class directly in the display.
 
 DONE
 

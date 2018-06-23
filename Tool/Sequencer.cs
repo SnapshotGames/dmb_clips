@@ -485,11 +485,11 @@ public partial class Sequencer : MonoBehaviour
 		Debug.Log( "Set movement from animation. Animation Offset: " + mcn.Internals.Offset );
 	}
 
-	private void RestoreMecanimDuration( Sample sample )
+	private void RestoreMecanimDuration( MecanimSample sample )
 	{
 		UNDORecordChange( "Restore Duration" );
-		var mcn = sample as MecanimSample;
-		mcn.Duration = Mathf.Max( 0.123456789f, mcn.Internals.Duration );
+		UpdateAnimationInternals( sample );
+		sample.Duration = Mathf.Max( 0.123456789f, sample.Internals.Duration );
 	}
 
 	private void ChangeState( MecanimSample sample, string newState )
@@ -617,9 +617,9 @@ public partial class Sequencer : MonoBehaviour
 		bool hasSampleBelow = GetFirstSampleBelow( sample.Track, 
 													sample.StartTime + sample.Duration / 2, out sampleBelow );
 		if ( sample is MecanimSample ) {
-			add( "Toggle Looped", () => ToggleLooped( sample ) );
-			add( "Restore Duration", () => RestoreMecanimDuration( sample ) );
-			//add( "Split", () => RestoreMecanimDuration( sample ) );
+            var mcn = sample as MecanimSample;
+			add( "Toggle Looped", () => ToggleLooped( mcn ) );
+			add( "Restore Duration", () => RestoreMecanimDuration( mcn ) );
 			add( MenuDelimiter, () => {} );
 		} else if ( sample is CameraPathSample ) {
 			add( "Add Key", () => AddCamKey( sample as CameraPathSample, mouseTime ) );
@@ -841,11 +841,11 @@ public partial class Sequencer : MonoBehaviour
 
 	// FIXME: some of these below can become commands
 
-	private void ToggleLooped( Sample sample )
+	private void ToggleLooped( MecanimSample sample )
 	{
 		UNDORecordChange( "Toggle Looped" );
-		var mcn = sample as MecanimSample;
-		mcn.Looped = ! mcn.Looped;
+		sample.Looped = ! sample.Looped;
+        UpdateAnimationInternals( sample );
 	}
 
 	private void RemoveSample( Sample sample )
