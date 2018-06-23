@@ -12,6 +12,7 @@ Add UI for the moments/one-shot-events. Should there be specific one-shot-events
 Show optional tips when hovering the sequencer interface.
 BUG: Sometimes drag and drop of clips doesn't work.
 Right click on keys.
+Rename <whatever>Edit to Edit<whatever>
 
 DONE
 
