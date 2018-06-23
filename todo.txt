@@ -1,8 +1,22 @@
-Create Clips directory in Resources if not created yet.
-Move the clip merge stuff to PP specific.
-Move the AimIK to PP specific.
-Move the Utl stuff into clip util.
+IN PROGRESS
+
+TODO
+
 Remove redundant partial Sequencers.
-. Extend Sequencer for PP using inheritance.
 Remove noise members from camera.
 Always show the move-entire-spline gizmo
+Add distance-to-chase-point parameter in the path following, overriden in keys.
+Fix the chase point gizmo.
+Add origin gizmo on path following.
+Add UI for the moments/one-shot-events. Should there be specific one-shot-events similar to the way Samples implement single functionality (non-generic).
+Show optional tips when hovering the sequencer interface.
+BUG: Sometimes drag and drop of clips doesn't work.
+Right click on keys.
+
+DONE
+
+* Create Clips directory in Resources if not created yet.
+* Move the clip merge stuff to PP specific.
+* Move the AimIK to PP specific.
+* Move the Utl stuff into clip util.
+. Extend Sequencer for PP using inheritance.
