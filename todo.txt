@@ -1,10 +1,9 @@
 IN PROGRESS
 
+Always show the move-entire-spline gizmo
+
 TODO
 
-Remove redundant partial Sequencers.
-Remove noise members from camera.
-Always show the move-entire-spline gizmo
 Add distance-to-chase-point parameter in the path following, overriden in keys.
 Fix the chase point gizmo.
 Add actor-origin-gizmo on path following.
@@ -14,9 +13,11 @@ BUG: Sometimes drag and drop of clips doesn't work.
 Right-click menu on keys.
 Rename <whatever>Edit to Edit<whatever>
 Make an interface to all looped samples, and stop refer MecanimSample class directly in the display.
+Remove redundant partial Sequencers.
 
 DONE
 
+* Remove noise members from camera.
 * Create Clips directory in Resources if not created yet.
 * Move the clip merge stuff to PP specific.
 * Move the AimIK to PP specific.

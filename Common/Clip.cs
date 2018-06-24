@@ -114,8 +114,6 @@ public class CameraPathSample : KeyedSample
 	// FIXME: obsolete
 	public List<Vector3> Points = new List<Vector3>();
 	public List<CameraPathKey> Keys = new List<CameraPathKey>();
-	public float NoiseFrequency;
-	public float NoiseAmplitude;
 
 	public override void Clear()
 	{
@@ -137,8 +135,6 @@ public class CameraPathSample : KeyedSample
 				clone.Keys.Add( k.Clone() );
 			}
 		}
-		clone.NoiseFrequency = NoiseFrequency;
-		clone.NoiseAmplitude = NoiseAmplitude;
 		return clone;
 	}
 	
