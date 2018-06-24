@@ -15,7 +15,7 @@ public class FollowPathEdit
     // FIXME: static?
     private static Vector3 _chasePoint;
     private int _selectedPath;
-    //private int _fpSelectedIndex = -1;
+    private int _selectedIndex = -1;
 
     public bool DrawPath( Vector3 [] path, Color color, int pathId, 
             bool moveWholeSpline,
@@ -26,48 +26,47 @@ public class FollowPathEdit
         Vector3 dummy;
         SWUI.LinePoint( _chasePoint, true, false, out dummy );
         bool selected = _selectedPath == pathId;
+        Vector3 posHandleDrag = Vector3.zero;
+        bool wholeSplineMoved = false;
+        if ( selected ) {
+            wholeSplineMoved = EditCommon.DrawPositionHandle( path, out posHandleDrag );
+        }
         float alpha = selected ? 1 : 0.3f;
         float thickness = selected ? selectedThickness : unselectedThickness;
         Handles.color = SWUI.CCol( new Color( color.r, color.g, color.b, alpha ) );
         Handles.DrawAAPolyLine( texture, thickness, path ); 
-        bool result = false;
-        for ( int i = 0; i < path.Length; i++ ) {
-            Vector3 selPt = path[i];
-            EditorGUI.BeginChangeCheck();
-            Vector3 newPt;
-            if ( SWUI.LinePoint( selPt, selected, moveWholeSpline, out newPt ) ) {
-                //_fpSelectedIndex = i;
-                _selectedPath = pathId;
+        int newSelIndex, dragIndex;
+        Vector3 drag;
+        bool somePointChanged = EditCommon.DrawControlPoints( path, _selectedIndex, selected, 
+                                                            out newSelIndex, out dragIndex, out drag );
+        if ( wholeSplineMoved ) {
+            for ( int i = 0; i < path.Length; i++ ) {
+                path[i] += posHandleDrag;
             }
-            if ( EditorGUI.EndChangeCheck() ) {
-                if ( moveWholeSpline ) {
-                    Vector3 d = newPt - selPt;
-                    for ( int j = 0; j < path.Length; j++ ) {
-                        path[j] += d;
-                    }
-                } else {
-                    path[i] = newPt;
-                }
-                result = true;
+        } else if ( somePointChanged ) {
+            if ( newSelIndex >= 0 ) {
+                SelectPath( newSelIndex, pathId );
             }
-            if ( moveWholeSpline ) {
-                break;
+            if ( dragIndex >= 0 ) {
+                path[dragIndex] += drag;
             }
         }
-        return result;
+        return somePointChanged || wholeSplineMoved;
     }
 
-    public void SelectPath( int pathId )
+    public void SelectPath( int selIndex, int pathId )
     {
         _selectedPath = pathId;
+        _selectedIndex = selIndex;
     }
 
     public void Deselect()
     {
         _selectedPath = -1;
-        //_fpSelectedIndex = -1;
+        _selectedIndex = -1;
     }
 
+    // FIXME: move to utils/common
     // EXECUTION
 
     public static Vector3 GetPointOnPath( List<FollowPathKey> path, float normTime )

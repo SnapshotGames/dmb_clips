@@ -597,7 +597,7 @@ public class Display
                     if ( sample is FollowPathSample ) {
                         var fp = sample as FollowPathSample;
                         _cpe.Deselect();
-                        _fpe.SelectPath( clip.FollowPathSamples.IndexOf( fp ) );
+                        _fpe.SelectPath( -1, clip.FollowPathSamples.IndexOf( fp ) );
                     } else {
                         var cp = sample as CameraPathSample;
                         _fpe.Deselect();
