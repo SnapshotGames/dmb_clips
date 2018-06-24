@@ -1,5 +1,6 @@
 IN PROGRESS
 
+Rename <whatever>Edit to Edit<whatever>
 Always show the move-entire-spline gizmo
 
 TODO
@@ -11,7 +12,6 @@ Add UI for the moments/one-shot-events. Should there be specific one-shot-events
 Show optional tips when hovering the sequencer interface.
 BUG: Sometimes drag and drop of clips doesn't work.
 Right-click menu on keys.
-Rename <whatever>Edit to Edit<whatever>
 Make an interface to all looped samples, and stop refer MecanimSample class directly in the display.
 Remove redundant partial Sequencers.
 
