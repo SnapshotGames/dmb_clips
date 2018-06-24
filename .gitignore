@@ -1,3 +1,5 @@
+Example/Resources/DMBClips/*
+!big_guy_github.clip*
 *.swp
 *.swo
 todo.txt.meta
