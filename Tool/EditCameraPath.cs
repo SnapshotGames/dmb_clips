@@ -52,30 +52,6 @@ public class CameraPathEdit
         }
     }
 
-    private static bool IsTangentHandle( int index ) {
-        return index % 3 != 0;
-    }
-
-    private static bool DrawPositionHandle( Vector3 [] path, int selectedIndex, out Vector3 drag )
-    {
-        if ( path.Length == 0 ) {
-            drag = Vector3.zero;
-            return false;
-        }
-        Bounds b = new Bounds( path[0] + new Vector3( 0.1f, 0.1f, 0.1f ), Vector3.zero );
-        if ( Tools.pivotMode == PivotMode.Center ) {
-            for ( int i = 0; i < path.Length; i++ ) {
-                //if ( i != selectedIndex ) {
-                    var p = path[i];
-                    b.Encapsulate( p );
-                //}
-            }
-        }
-        Vector3 newCenter = Handles.PositionHandle( b.center, Quaternion.identity );
-        drag = newCenter - b.center;
-        return drag.sqrMagnitude > 0.001f;
-    }
-
     private static void DrawSpline( Vector3 [] path, Color color, float thickness, Texture2D tex ) 
     {
         for ( int i = 0; i < path.Length - 3; i += 3 ) {
@@ -83,36 +59,16 @@ public class CameraPathEdit
         }
     }
 
-    private static bool DrawControlPoints( Vector3 [] path, int selIndex, out int newSelIndex, out int dragIndex, out Vector3 drag )
-    {
-        drag = Vector3.zero;
-        dragIndex = -1;
-        newSelIndex = -1;
-        for ( int i = 0; i < path.Length; i++ ) {
-            Vector3 selPt = path[i];
-            EditorGUI.BeginChangeCheck();
-            Vector3 newPt;
-            if ( SWUI.LinePoint( selPt, true, false, out newPt, 
-                        selectedIndex: i == selIndex, isTangent: IsTangentHandle( i ) ) ) {
-                newSelIndex = i;
-            }
-            if ( EditorGUI.EndChangeCheck() ) {
-                dragIndex = i;
-                drag = newPt - selPt;
-            }
-        }
-        return newSelIndex >= 0 || dragIndex >= 0;
-    }
-
     private bool DrawSelectedPath( Vector3 [] path, Color color, float thickness = 2, Texture2D tex = null ) 
     {
+        Vector3 posHandleDrag;
+        bool wholeSplineMoved = EditCommon.DrawPositionHandle( path, out posHandleDrag );
         DrawSpline( path, color, thickness, tex );
         Vector3 pointDrag;
         int newSelIndex, dragIndex;
-        bool somePointChanged = DrawControlPoints( path, _selectedIndex, out newSelIndex, out dragIndex, 
-                                                out pointDrag );
-        Vector3 posHandleDrag;
-        bool wholeSplineMoved = DrawPositionHandle( path, _selectedIndex, out posHandleDrag );
+        bool somePointChanged = EditCommon.DrawControlPoints( path, _selectedIndex, true, out newSelIndex, 
+                                                                out dragIndex, out pointDrag,
+                                                                detectTangents: true );
         if ( wholeSplineMoved ) {
             for ( int i = 0; i < path.Length; i++ ) {
                 path[i] += posHandleDrag;
