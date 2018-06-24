@@ -201,7 +201,7 @@ public class SWUI
         } );
     }
 
-    public static bool LinePoint( Vector4 selectedPoint, bool selectedSpline, bool showPosHandle, out Vector3 newPoint, bool selectedIndex = false, bool isTangent = false ) 
+    public static bool LinePoint( Vector4 selectedPoint, bool selectedSpline, bool showPosHandle, out Vector3 newPoint, bool selectedIndex = false, bool isSecondary = false ) 
     {
         selectedIndex = selectedSpline && selectedIndex;
         float alpha = selectedSpline ? 1 : 0.3f;
@@ -209,7 +209,7 @@ public class SWUI
         Vector3 snap = Vector3.one * 0.1f;
         float scale;
         float selScale = selectedSpline ? 1 : 0.3f;
-        if ( isTangent && ! selectedIndex ) {
+        if ( isSecondary && ! selectedIndex ) {
             scale = 0.7f;
         } else {
             scale = selectedIndex ? 1.5f : 0.7f;
