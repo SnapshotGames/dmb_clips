@@ -1,22 +1,22 @@
 IN PROGRESS
 
-Rename <whatever>Edit to Edit<whatever>
-Always show the move-entire-spline gizmo
-
 TODO
 
 Add distance-to-chase-point parameter in the path following, overriden in keys.
-Fix the chase point gizmo.
+    Fix the chase point gizmo.
+Right-click menu on keys.
 Add actor-origin-gizmo on path following.
 Add UI for the moments/one-shot-events. Should there be specific one-shot-events similar to the way Samples implement single functionality (non-generic).
 Show optional tips when hovering the sequencer interface.
-BUG: Sometimes drag and drop of clips doesn't work.
-Right-click menu on keys.
 Make an interface to all looped samples, and stop refer MecanimSample class directly in the display.
 Remove redundant partial Sequencers.
+Retab all .cs files
 
 DONE
 
+. BUG: Sometimes drag and drop of clips doesn't work.
+* Rename <whatever>Edit to Edit<whatever>
+* Always show the move-entire-spline gizmo
 * Remove noise members from camera.
 * Create Clips directory in Resources if not created yet.
 * Move the clip merge stuff to PP specific.
