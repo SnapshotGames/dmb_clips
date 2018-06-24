@@ -127,7 +127,14 @@ public class FollowPathEdit
                 FollowPathKey key = points[segIndex];
                 go.transform.position = p0;
                 if ( key.Facing.sqrMagnitude < 0.0001f ) {
-                    float chaseOff = key.ChasePointOffset > 0.00001f ? key.ChasePointOffset : 0.03f;
+                    float chaseOff;
+                    if ( Mathf.Abs( key.ChasePointOffsetOverride ) > 0.00001f ) {
+                        chaseOff = key.ChasePointOffsetOverride;
+                    } else if ( Mathf.Abs( fps.ChasePointOffset ) > 0.00001f ) { 
+                        chaseOff = fps.ChasePointOffset;
+                    } else {
+                        chaseOff = 0.1f;
+                    }
                     float t1 = localTime + chaseOff / fps.Duration;
                     if ( t1 <= 1 ) {
                         Vector3 p1 = GetPointOnPath( points, t1 );

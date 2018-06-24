@@ -297,7 +297,7 @@ public class FollowPathKey
     public Vector3 Position;
     public Vector3 Facing;
     public float TimeNorm;
-    public float ChasePointOffset;
+    public float ChasePointOffsetOverride;
 
     public FollowPathKey Clone()
     {
@@ -305,7 +305,7 @@ public class FollowPathKey
         clone.Position = Position;
         clone.Facing = Facing;
         clone.TimeNorm = TimeNorm;
-        clone.ChasePointOffset = ChasePointOffset;
+        clone.ChasePointOffsetOverride = ChasePointOffsetOverride;
         return clone;
     }
 }
@@ -315,6 +315,7 @@ public class FollowPathSample : KeyedSample
 {
     public override Color Color { get { return Color.magenta; } }
 
+    public float ChasePointOffset = 0.1f;
     // FIXME: obsolete someday
     public List<Vector3> Points = new List<Vector3>();
     public List<FollowPathKey> Keys = new List<FollowPathKey>();
@@ -367,6 +368,7 @@ public class FollowPathSample : KeyedSample
     {
         var clone = new FollowPathSample();
         CopyBase( clone );
+        clone.ChasePointOffset = ChasePointOffset;
         clone.Points.AddRange( Points );
         foreach ( var k in Keys ) {
             clone.Keys.Add( k.Clone() );
