@@ -410,8 +410,8 @@ public class Display
 		for ( int i = 0; i < clip.CamPathSamples.Count; i++ ) {
 			var cps = clip.CamPathSamples[i];
 			Vector3 [] points = cps.GetPoints();
-			if ( _cpe.DrawPath( points, cps.Color, i, UI.IsAltHoldDown(), 
-						SelectedSplineWidth, UnselectedSplineWidth, SplineTexture ) ) {
+			if ( _cpe.DrawPath( points, cps.Color, i, SelectedSplineWidth, UnselectedSplineWidth, 
+                                    SplineTexture ) ) {
 				modifiedPoints = points;
 				modifiedSample = cps;
 			}
