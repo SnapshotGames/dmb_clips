@@ -8,7 +8,7 @@ using UnityEditor;
 namespace DMB
 {
 
-public class CameraPathEdit
+public class EditCameraPath
 {
     private int _selectedPath;
     private int _selectedIndex;

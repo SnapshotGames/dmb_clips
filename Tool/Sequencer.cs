@@ -315,7 +315,7 @@ public partial class Sequencer : MonoBehaviour
 
     private void SampleFollowPath( FollowPathSample fps )
     {
-        FollowPathEdit.SampleAtTime( fps.ActorPrefab, fps, _absoluteTime );
+        EditFollowPath.SampleAtTime( fps.ActorPrefab, fps, _absoluteTime );
     }
 
     private void SampleFollowPaths()
@@ -557,7 +557,7 @@ public partial class Sequencer : MonoBehaviour
         float keyTime = ( timeInClip - fps.StartTime ) / fps.Duration;
         Vector3 pos;
         int i;
-        FollowPathEdit.GetPointOnPath( fps.Keys, keyTime, out pos, out i );
+        EditFollowPath.GetPointOnPath( fps.Keys, keyTime, out pos, out i );
         fps.Keys.Insert( i + 1, new FollowPathKey {
             TimeNorm = keyTime,
             Position = pos,
@@ -831,7 +831,7 @@ public partial class Sequencer : MonoBehaviour
             cps.SetPoints( points );
         }
         FollowPathSample fps;
-        if ( Display.DrawFollowPaths( _clip, out fps, out points ) ) {
+        if ( Display.DrawFollowPaths( _clip, _absoluteTime, out fps, out points ) ) {
             UNDORecordChange( "Modified Follow Path Points" );
             fps.UpdatePositions( points );
             isEditing = true;
@@ -891,7 +891,7 @@ public partial class Sequencer : MonoBehaviour
         var origin = Camera.main.transform.position;
         var p0 = origin;
         var p1 = origin + new Vector3( 0, 0, 3 );
-        string actor = CameraPathEdit.FallbackCamera.name;
+        string actor = EditCameraPath.FallbackCamera.name;
         if ( _clip.CamPathSamples.Count > 0 ) {
             actor = _clip.CamPathSamples[0].ActorPrefab;
         }

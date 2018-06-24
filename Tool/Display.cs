@@ -29,8 +29,8 @@ public class Display
     private const float TrackHeight = 18;
     private const float SampleYMargin = 1;
 
-    private CameraPathEdit _cpe = new CameraPathEdit();
-    private FollowPathEdit _fpe = new FollowPathEdit();
+    private EditCameraPath _ecp = new EditCameraPath();
+    private EditFollowPath _efp = new EditFollowPath();
 
     public float TrackWidth { get { return UI.Window.width - TrackXMargin - TrackYMargin; } }
 
@@ -41,8 +41,8 @@ public class Display
 
     public void DeselectAll()
     {
-        _cpe.Deselect();
-        _fpe.Deselect();
+        _ecp.Deselect();
+        _efp.Deselect();
     }
 
     public void Reset()
@@ -52,20 +52,20 @@ public class Display
 
     public bool CheckDeleteKey( Clip clip, out KeyedSample modifiedSample, out int keyToRemove )
     {
-        if ( _cpe.IsSelected() && _cpe.IsSelectedNode() ) {
-            var cps = clip.CamPathSamples[_cpe.GetSelectedPath()];
+        if ( _ecp.IsSelected() && _ecp.IsSelectedNode() ) {
+            var cps = clip.CamPathSamples[_ecp.GetSelectedPath()];
             if ( cps.Keys.Count > 2 ) {
                 modifiedSample = cps;
-                keyToRemove = cps.KeyFromPoint( _cpe.GetSelectedPoint() );
+                keyToRemove = cps.KeyFromPoint( _ecp.GetSelectedPoint() );
                 return true;
             }
         }
         // FIXME: do it, finaly merge common functionality 
-        //if ( _fpe.IsSelected() && _fpe.IsSelectedNode() ) {
-        //  var fps = clip.FollowPathSamples[_fpe.GetSelectedPath()];
+        //if ( _efp.IsSelected() && _efp.IsSelectedNode() ) {
+        //  var fps = clip.FollowPathSamples[_efp.GetSelectedPath()];
         //  if ( fps.Keys.Count > 2 ) {
         //      modifiedSample = fps;
-        //      keyToRemove = fps.KeyFromPoint( _cpe.GetSelectedPoint() );
+        //      keyToRemove = fps.KeyFromPoint( _ecp.GetSelectedPoint() );
         //      return true;
         //  }
         //}
@@ -399,18 +399,18 @@ public class Display
 
     public void UpdateCameraLine( Vector3 camPos, Vector3 camLookat )
     {
-        _cpe.SetLookatSegment( camPos, camLookat );
+        _ecp.SetLookatSegment( camPos, camLookat );
     }
 
     public bool DrawCameraPaths( Clip clip, out CameraPathSample modifiedSample, out Vector3 [] modifiedPoints ) 
     {
-        _cpe.DrawLookatLine();
+        _ecp.DrawLookatLine();
         modifiedPoints = null;
         modifiedSample = null;
         for ( int i = 0; i < clip.CamPathSamples.Count; i++ ) {
             var cps = clip.CamPathSamples[i];
             Vector3 [] points = cps.GetPoints();
-            if ( _cpe.DrawPath( points, cps.Color, i, SelectedSplineWidth, UnselectedSplineWidth, 
+            if ( _ecp.DrawPath( points, cps.Color, i, SelectedSplineWidth, UnselectedSplineWidth, 
                                     SplineTexture ) ) {
                 modifiedPoints = points;
                 modifiedSample = cps;
@@ -419,17 +419,21 @@ public class Display
         return modifiedSample != null;
     }
 
-    public bool DrawFollowPaths( Clip clip, out FollowPathSample modifiedSample, out Vector3 [] modifiedPoints ) 
+    public bool DrawFollowPaths( Clip clip, float absoluteTime, out FollowPathSample modifiedSample, 
+                                    out Vector3 [] modifiedPoints ) 
     {
         modifiedPoints = null;
         modifiedSample = null;
         for ( int i = 0; i < clip.FollowPathSamples.Count; i++ ) {
-            var cps = clip.FollowPathSamples[i];
-            Vector3 [] points = cps.GetPositions();
-            if ( _fpe.DrawPath( points, cps.Color, i, UI.IsAltHoldDown(), 
+            var fps = clip.FollowPathSamples[i];
+            Vector3 [] points = fps.GetPositions();
+            int originSegment;
+            Vector3 origin, chasePoint;
+            EditFollowPath.SampleAtTime( fps, absoluteTime, out originSegment, out origin, out chasePoint );
+            if ( _efp.DrawPath( points, origin, chasePoint, fps.Color, i, UI.IsAltHoldDown(), 
                         SelectedSplineWidth, UnselectedSplineWidth, SplineTexture ) ) {
                 modifiedPoints = points;
-                modifiedSample = cps;
+                modifiedSample = fps;
             }
         }
         return modifiedSample != null;
@@ -596,12 +600,12 @@ public class Display
                 if ( res == DrawSampleResult.StoppedDragging ) {
                     if ( sample is FollowPathSample ) {
                         var fp = sample as FollowPathSample;
-                        _cpe.Deselect();
-                        _fpe.SelectPath( -1, clip.FollowPathSamples.IndexOf( fp ) );
+                        _ecp.Deselect();
+                        _efp.SelectPath( -1, clip.FollowPathSamples.IndexOf( fp ) );
                     } else {
                         var cp = sample as CameraPathSample;
-                        _fpe.Deselect();
-                        _cpe.SelectPath( -1, clip.CamPathSamples.IndexOf( cp ) );
+                        _efp.Deselect();
+                        _ecp.SelectPath( -1, clip.CamPathSamples.IndexOf( cp ) );
                     }
                 } 
                 cTrack = mtr;

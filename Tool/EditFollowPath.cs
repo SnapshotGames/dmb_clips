@@ -8,23 +8,19 @@ using UnityEditor;
 namespace DMB
 {
 
-public class FollowPathEdit
+public class EditFollowPath
 {
-    // EDITING
-
-    // FIXME: static?
-    private static Vector3 _chasePoint;
     private int _selectedPath;
     private int _selectedIndex = -1;
 
-    public bool DrawPath( Vector3 [] path, Color color, int pathId, 
-            bool moveWholeSpline,
-            float selectedThickness,
-            float unselectedThickness,
-            Texture2D texture ) 
+    public bool DrawPath( Vector3 [] path, Vector3 origin, Vector3 chasePoint, Color color, int pathId, 
+                bool moveWholeSpline, float selectedThickness, float unselectedThickness, Texture2D texture ) 
     {
-        Vector3 dummy;
-        SWUI.LinePoint( _chasePoint, true, false, out dummy );
+        Handles.color = Color.white;
+        Handles.FreeMoveHandle( origin, Quaternion.identity, 0.04f, Vector3.zero, 
+                                    Handles.RectangleHandleCap );
+        Handles.FreeMoveHandle( chasePoint, Quaternion.identity, 0.04f, Vector3.zero, 
+                                    Handles.RectangleHandleCap );
         bool selected = _selectedPath == pathId;
         Vector3 posHandleDrag = Vector3.zero;
         bool wholeSplineMoved = false;
@@ -113,44 +109,47 @@ public class FollowPathEdit
         pos = Vector3.zero;
     }
 
-    public static void SampleAtTime( string actorName, FollowPathSample fps, float absoluteTime ) 
+    public static void SampleAtTime( FollowPathSample fps, float absoluteTime, 
+                                            out int originSegment, out Vector3 origin, out Vector3 chasePoint )
     {
         List<FollowPathKey> points = fps.Keys;
         float localTime = ClipUtil.LocalTime( absoluteTime, fps.StartTime, fps.Duration );
-        if ( localTime >= 0 && localTime <= 1 ) {
-            GameObject go = GameObject.Find( actorName );
-            if ( go != null ) {
-                float t0 = localTime;
-                int segIndex;
-                Vector3 p0;
-                GetPointOnPath( points, t0, out p0, out segIndex );
-                FollowPathKey key = points[segIndex];
-                go.transform.position = p0;
-                if ( key.Facing.sqrMagnitude < 0.0001f ) {
-                    float chaseOff;
-                    if ( Mathf.Abs( key.ChasePointOffsetOverride ) > 0.00001f ) {
-                        chaseOff = key.ChasePointOffsetOverride;
-                    } else if ( Mathf.Abs( fps.ChasePointOffset ) > 0.00001f ) { 
-                        chaseOff = fps.ChasePointOffset;
-                    } else {
-                        chaseOff = 0.1f;
-                    }
-                    float t1 = localTime + chaseOff / fps.Duration;
-                    if ( t1 <= 1 ) {
-                        Vector3 p1 = GetPointOnPath( points, t1 );
-                        _chasePoint = p1;
-                        Vector3 v = p1 - p0;
-                        v = new Vector3( v.x, 0, v.z );
-                        if ( v.sqrMagnitude > 0.0001f ) {
-                            go.transform.forward = v.normalized;
-                        }
-                    }
-                } else {
-                    go.transform.forward = key.Facing.normalized;
-                }
-            } else {
-                Debug.Log( "Can't find object in scene called '" + actorName + "'" );
+        localTime = Mathf.Clamp( localTime, 0, 1 );
+        float t0 = localTime;
+        GetPointOnPath( points, t0, out origin, out originSegment );
+        FollowPathKey key = points[originSegment];
+        float chaseOff;
+        if ( Mathf.Abs( key.ChasePointOffsetOverride ) > 0.00001f ) {
+            chaseOff = key.ChasePointOffsetOverride;
+        } else if ( Mathf.Abs( fps.ChasePointOffset ) > 0.00001f ) { 
+            chaseOff = fps.ChasePointOffset;
+        } else {
+            chaseOff = 0.1f;
+        }
+        float t1 = localTime + chaseOff / fps.Duration;
+        chasePoint = GetPointOnPath( points, t1 );
+    }
+
+    public static void SampleAtTime( string actorName, FollowPathSample fps, float absoluteTime ) 
+    {
+        GameObject go = GameObject.Find( actorName );
+        if ( go == null ) {
+            Debug.Log( "Can't find object in scene called '" + actorName + "'" );
+            return;
+        }
+        int segIndex;
+        Vector3 origin, chasePoint;
+        SampleAtTime( fps, absoluteTime, out segIndex, out origin, out chasePoint );
+        go.transform.position = origin;
+        FollowPathKey key = fps.Keys[segIndex];
+        if ( key.Facing.sqrMagnitude < 0.0001f ) {
+            Vector3 v = chasePoint - origin;
+            v = new Vector3( v.x, 0, v.z );
+            if ( v.sqrMagnitude > 0.0001f ) {
+                go.transform.forward = v.normalized;
             }
+        } else {
+            go.transform.forward = key.Facing.normalized;
         }
     }
 }
