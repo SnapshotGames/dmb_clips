@@ -8,7 +8,7 @@ using UnityEditor;
 namespace DMB
 {
 
-public static class EditCommon
+public class EditPath
 {
     public static bool IsTangentHandle( int index ) {
         return index % 3 != 0;
@@ -53,6 +53,41 @@ public static class EditCommon
             }
         }
         return newSelIndex >= 0 || dragIndex >= 0;
+    }
+
+    protected int _selectedPath;
+    protected int _selectedIndex;
+
+    public void SelectPath( int pointIndex, int pathId )
+    {
+        _selectedIndex = pointIndex;
+        _selectedPath = pathId;
+    }
+
+    public void Deselect()
+    {
+        _selectedPath = -1;
+        _selectedIndex = -1;
+    }
+
+    public int GetSelectedPath()
+    {
+        return _selectedPath;
+    }
+
+    public int GetSelectedPoint()
+    {
+        return _selectedIndex;
+    }
+
+    public bool IsSelected()
+    {
+        return _selectedPath >= 0;
+    }
+
+    public bool IsSelectedNode()
+    {
+        return _selectedIndex >= 0;
     }
 }
 

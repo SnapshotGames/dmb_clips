@@ -8,10 +8,8 @@ using UnityEditor;
 namespace DMB
 {
 
-public class EditCameraPath
+public class EditCameraPath : EditPath
 {
-    private int _selectedPath;
-    private int _selectedIndex;
     private Vector3 _camLookat;
     private Vector3 _camPos;
     public static Camera FallbackCamera { get {
@@ -66,11 +64,11 @@ public class EditCameraPath
     private bool DrawSelectedPath( Vector3 [] path, Color color, float thickness = 2, Texture2D tex = null ) 
     {
         Vector3 posHandleDrag;
-        bool wholeSplineMoved = EditCommon.DrawPositionHandle( path, out posHandleDrag );
+        bool wholeSplineMoved = DrawPositionHandle( path, out posHandleDrag );
         DrawSpline( path, color, thickness, tex );
         Vector3 pointDrag;
         int newSelIndex, dragIndex;
-        bool somePointChanged = EditCommon.DrawControlPoints( path, _selectedIndex, true, out newSelIndex, 
+        bool somePointChanged = DrawControlPoints( path, _selectedIndex, true, out newSelIndex, 
                                                                 out dragIndex, out pointDrag,
                                                                 detectTangents: true );
         if ( wholeSplineMoved ) {
@@ -123,38 +121,6 @@ public class EditCameraPath
         }
         DrawDeselectedPath( path, color, pathId, unselectedWidth );
         return false;
-    }
-
-    public void SelectPath( int pointIndex, int pathId )
-    {
-        _selectedIndex = pointIndex;
-        _selectedPath = pathId;
-    }
-
-    public void Deselect()
-    {
-        _selectedPath = -1;
-        _selectedIndex = -1;
-    }
-
-    public int GetSelectedPath()
-    {
-        return _selectedPath;
-    }
-
-    public int GetSelectedPoint()
-    {
-        return _selectedIndex;
-    }
-
-    public bool IsSelected()
-    {
-        return _selectedPath >= 0;
-    }
-
-    public bool IsSelectedNode()
-    {
-        return _selectedIndex >= 0;
     }
 
     public void SetLookatSegment( Vector3 pos, Vector3 lookat )

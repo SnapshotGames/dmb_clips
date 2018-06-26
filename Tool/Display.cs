@@ -52,23 +52,20 @@ public class Display
 
     public bool CheckDeleteKey( Clip clip, out KeyedSample modifiedSample, out int keyToRemove )
     {
+        KeyedSample ks = null;
+        int selPt = -1;
         if ( _ecp.IsSelected() && _ecp.IsSelectedNode() ) {
-            var cps = clip.CamPathSamples[_ecp.GetSelectedPath()];
-            if ( cps.Keys.Count > 2 ) {
-                modifiedSample = cps;
-                keyToRemove = cps.KeyFromPoint( _ecp.GetSelectedPoint() );
-                return true;
-            }
+            ks = clip.CamPathSamples[_ecp.GetSelectedPath()];
+            selPt = _ecp.GetSelectedPoint();
+        } else if ( _efp.IsSelected() && _efp.IsSelectedNode() ) {
+            ks = clip.FollowPathSamples[_efp.GetSelectedPath()];
+            selPt = _efp.GetSelectedPoint();
         }
-        // FIXME: do it, finaly merge common functionality 
-        //if ( _efp.IsSelected() && _efp.IsSelectedNode() ) {
-        //  var fps = clip.FollowPathSamples[_efp.GetSelectedPath()];
-        //  if ( fps.Keys.Count > 2 ) {
-        //      modifiedSample = fps;
-        //      keyToRemove = fps.KeyFromPoint( _ecp.GetSelectedPoint() );
-        //      return true;
-        //  }
-        //}
+        if ( ks.GetNumKeys() > 2 ) {
+            modifiedSample = ks;
+            keyToRemove = ks.KeyFromPoint( selPt );
+            return true;
+        }
         keyToRemove = -1;
         modifiedSample = null;
         return false;

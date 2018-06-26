@@ -8,11 +8,8 @@ using UnityEditor;
 namespace DMB
 {
 
-public class EditFollowPath
+public class EditFollowPath : EditPath
 {
-    private int _selectedPath;
-    private int _selectedIndex = -1;
-
     public bool DrawPath( Vector3 [] path, Vector3 origin, Vector3 chasePoint, Color color, int pathId, 
                 bool moveWholeSpline, float selectedThickness, float unselectedThickness, Texture2D texture ) 
     {
@@ -25,7 +22,7 @@ public class EditFollowPath
         Vector3 posHandleDrag = Vector3.zero;
         bool wholeSplineMoved = false;
         if ( selected ) {
-            wholeSplineMoved = EditCommon.DrawPositionHandle( path, out posHandleDrag );
+            wholeSplineMoved = DrawPositionHandle( path, out posHandleDrag );
         }
         float alpha = selected ? 1 : 0.3f;
         float thickness = selected ? selectedThickness : unselectedThickness;
@@ -33,7 +30,7 @@ public class EditFollowPath
         Handles.DrawAAPolyLine( texture, thickness, path ); 
         int newSelIndex, dragIndex;
         Vector3 drag;
-        bool somePointChanged = EditCommon.DrawControlPoints( path, _selectedIndex, selected, 
+        bool somePointChanged = DrawControlPoints( path, _selectedIndex, selected, 
                                                             out newSelIndex, out dragIndex, out drag );
         if ( wholeSplineMoved ) {
             for ( int i = 0; i < path.Length; i++ ) {
@@ -48,18 +45,6 @@ public class EditFollowPath
             }
         }
         return somePointChanged || wholeSplineMoved;
-    }
-
-    public void SelectPath( int selIndex, int pathId )
-    {
-        _selectedPath = pathId;
-        _selectedIndex = selIndex;
-    }
-
-    public void Deselect()
-    {
-        _selectedPath = -1;
-        _selectedIndex = -1;
     }
 
     // FIXME: move to utils/common
