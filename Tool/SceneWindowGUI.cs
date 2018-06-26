@@ -83,8 +83,7 @@ public class SWUI
         UEGUI.Label( new Rect( x, y, width, height ), text, _framedStyle );
     }
 
-    public string EditBox( string str, float x, float y, float width, float height, 
-                                    Color? bgrColor = null ) 
+    public string EditBox( string str, float x, float y, float width, float height, Color? bgrColor = null ) 
     {
         UEGUI.backgroundColor = CCol( bgrColor ?? new Color( 0.3f, 0.3f, 0.3f ) );
         UEGUI.contentColor = CCol( new Color( 0.75f, 0.75f, 0.75f ) );
@@ -333,7 +332,6 @@ public class SWUI
             case EventType.MouseUp:
                 if ( _dragControl == controlID ) {
                     // zero drag control only if it has been released
-                    _dragControl = 0;
                     if ( Event.current.button == 0 ) {
                         result = Result.LBUp;
                     }
@@ -346,6 +344,9 @@ public class SWUI
                 }
                 if ( GUIUtility.hotControl == controlID ) {
                     GUIUtility.hotControl = 0;
+                }
+                if ( _dragControl != 0 ) {
+                    _dragControl = 0;
                 }
                 break;
             case EventType.DragUpdated:
