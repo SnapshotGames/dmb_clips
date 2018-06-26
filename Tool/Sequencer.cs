@@ -888,7 +888,7 @@ public partial class Sequencer : MonoBehaviour
 
     private CameraPathSample CreateCamSample( float startTime, int track )
     {
-        var origin = Camera.main.transform.position;
+        var origin = EditCameraPath.FallbackCamera.transform.position;
         var p0 = origin;
         var p1 = origin + new Vector3( 0, 0, 3 );
         string actor = EditCameraPath.FallbackCamera.name;
