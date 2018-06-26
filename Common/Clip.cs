@@ -82,9 +82,14 @@ public abstract class Sample
 
 public abstract class KeyedSample : Sample
 {
+    public abstract int GetNumKeys();
     public abstract void SetKeyTime( int key, float time );
     public abstract float[] GetKeyTimes();
     public abstract void RemoveKey( int key );
+    public virtual int KeyFromPoint( int pointIndex )
+    {
+        return pointIndex;
+    }
 }
 
 [Serializable]
@@ -205,7 +210,7 @@ public class CameraPathSample : KeyedSample
         }
     }
 
-    public int KeyFromPoint( int pointIndex )
+    public override int KeyFromPoint( int pointIndex )
     {
         return ( pointIndex + 1 ) / 3;
     }
@@ -235,6 +240,11 @@ public class CameraPathSample : KeyedSample
             times[i] = Keys[i].TimeNorm;
         }
         return times;
+    }
+
+    public override int GetNumKeys()
+    {
+        return Keys.Count;
     }
 }
 
@@ -406,6 +416,11 @@ public class FollowPathSample : KeyedSample
     public override Sample VClone()
     {
         return Clone();
+    }
+
+    public override int GetNumKeys()
+    {
+        return Keys.Count;
     }
 }
 
