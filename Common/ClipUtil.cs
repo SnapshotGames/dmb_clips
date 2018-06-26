@@ -291,7 +291,7 @@ public static partial class ClipUtil
 			go = Camera.main.gameObject;
 		}
 		if ( ! go ) {
-			Debug.Log( "Can't find MainCamera or camera called '" + actor + "' in scene." );
+			Debug.Log( "Can't find camera tagged MainCamera or camera named '" + actor + "' in scene." );
 		}
 		return go != null;
 	}

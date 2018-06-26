@@ -16,7 +16,7 @@ public class EditCameraPath
     private Vector3 _camPos;
     public static Camera FallbackCamera { get {
         if ( Camera.main == null ) {
-            var cam = UnityEngine.Object.FindObjectOfType<Camera>() as Camera;
+            Camera cam = UnityEngine.Object.FindObjectOfType<Camera>();
             if ( cam ) {
                 return cam;
             }
