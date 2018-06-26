@@ -61,7 +61,7 @@ public class Display
             ks = clip.FollowPathSamples[_efp.GetSelectedPath()];
             selPt = _efp.GetSelectedPoint();
         }
-        if ( ks.GetNumKeys() > 2 ) {
+        if ( ks != null && ks.GetNumKeys() > 2 ) {
             modifiedSample = ks;
             keyToRemove = ks.KeyFromPoint( selPt );
             return true;
@@ -413,6 +413,9 @@ public class Display
                 modifiedSample = cps;
             }
         }
+        if ( _ecp.IsSelected() ) {
+            _efp.Deselect();
+        }
         return modifiedSample != null;
     }
 
@@ -432,6 +435,9 @@ public class Display
                 modifiedPoints = points;
                 modifiedSample = fps;
             }
+        }
+        if (_efp.IsSelected() ) {
+            _ecp.Deselect();
         }
         return modifiedSample != null;
     }
