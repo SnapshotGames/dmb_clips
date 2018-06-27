@@ -1,6 +1,6 @@
 # Dumb Sequencing and Playback  
 
-A dumb alternative to Unity3D's own 'smart' Animator, Timeline and Cinemachine systems.  
+Easy tiny cutscenes creation with animation crossfades, path following and camera splines.
 
 Installation
 ----
@@ -29,21 +29,3 @@ Some useful commands
 ![vid](https://i.imgur.com/Ft3AgNi.gif)
 ----
 Video of the tool: https://youtu.be/jr76VzZQUME
-
-Dumb Clips Goals
-----
-Easy animation preview (with crossfades).  
-Easy creation of tiny cutscenes (Clips) with multiple animated actors, camera splines and actor movement over paths.  
-* Multiple tracks for samples.  
-* Easy path following using steering while playing animations in other tracks.  
-* Easy camera 'rails' and cuts using splines and keys.    
-
-The Sequencer (a.k.a the tool) works both in Play and Edit modes.  
-Edit samples and paths while playing a Clip.  
-Minimal Sequencer interface, directly inside the Scene Window.  
-Clips are just a collection of Samples, each Sample class implementing specific action over time.  
-Use only human readable data structures, leading to readable prefabs.  
-No Custom Property Drawers and Editors.  
-Simple Sequencer setup.  
-Simple Playback embedding in games.  
-Extend the Sequencer and playback by extending only the core (implementing specific Samples and playback routines), not the interface/inspector.
