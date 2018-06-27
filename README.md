@@ -1,4 +1,4 @@
-# Dumb Sequencing and Playback for the Unity game engine
+# Dumb Sequencing and Playback for Unity3D
 
 Tiny cutscenes creation with animation crossfades, path following and camera splines.
 
