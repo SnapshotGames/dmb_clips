@@ -1,6 +1,6 @@
 # Dumb Sequencing and Playback  
 
-Easy tiny cutscenes creation with animation crossfades, path following and camera splines.
+Tiny cutscenes creation with animation crossfades, path following and camera splines.
 
 Installation
 ----
