@@ -1,6 +1,6 @@
 # Dumb Sequencing and Playback for Unity3D
 
-Tiny cutscenes creation tool, with animation crossfades, path following and camera splines.
+Tiny cutscenes creation tool with animation crossfades, path following and camera splines.
 
 Installation
 ----
