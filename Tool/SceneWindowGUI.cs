@@ -335,18 +335,17 @@ public class SWUI
                     if ( Event.current.button == 0 ) {
                         result = Result.LBUp;
                     }
+					_dragControl = 0;
                 } else if ( _dragControl == 0 && _hoverControl == controlID ) {
                     if ( Event.current.button == 0 ) {
                         result = Result.LBUp;
                     } else if ( Event.current.button == 1 ) {
                         result = Result.RBUp;
                     }
+					_dragControl = 0;
                 }
                 if ( GUIUtility.hotControl == controlID ) {
                     GUIUtility.hotControl = 0;
-                }
-                if ( _dragControl != 0 ) {
-                    _dragControl = 0;
                 }
                 break;
             case EventType.DragUpdated:
